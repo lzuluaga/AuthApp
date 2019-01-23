@@ -5,6 +5,7 @@ import com.cedesistemas.authapp.models.User;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 public interface IServices {
@@ -12,4 +13,7 @@ public interface IServices {
 
     @GET("user/auth")
     Call<User> logIn(@Query("email") String email, @Query("password")String password);
+
+    @GET("user")
+    Call<User> loginWithToken(@Header("Authorization") String token);
 }

@@ -36,4 +36,19 @@ public class Repository {
     }
 
 
+    public User loginWithToken(String token) throws IOException {
+        try {
+
+            String bearerToken = "bearer:"+ token;
+            Call<User> call = iServices.loginWithToken(bearerToken);
+            Response<User> response = call.execute();
+            if (response.errorBody() != null){
+                throw defaultError();
+            }else{
+                return response.body();
+            }
+        }catch (IOException e){
+            throw defaultError();
+        }
+    }
 }
